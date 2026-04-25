@@ -1,35 +1,36 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nguyễn Tùng Dương - Portfolio</title>
+    <title>Nguyễn Tùng Dương - Portfolio Cá Nhân</title>
     
-    <!-- Sử dụng Tailwind CSS qua CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Cấu hình màu sắc tùy chỉnh cho Tailwind -->
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: {
+                        barlow: ['Barlow', 'sans-serif'],
+                        instrument: ['Instrument Serif', 'serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
                     colors: {
                         darkBg: '#0f172a',
                     },
                     animation: {
-                        'blob': 'blob 7s infinite',
                         'fade-in': 'fadeIn 0.5s ease-out forwards',
                     },
                     keyframes: {
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        },
                         fadeIn: {
                             '0%': { opacity: '0', transform: 'translateY(10px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
@@ -39,197 +40,288 @@
             }
         }
     </script>
-
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-        
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #020617; /* Slate 950 */
+            background-color: #020617;
             color: #f8fafc;
             overflow-x: hidden;
         }
 
-        /* Hiệu ứng kính mờ (Glassmorphism) */
-        .glass-card {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        /* Hiệu ứng đổ bóng chữ cho Hero Section */
+        .text-glow {
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
         }
 
-        .animation-delay-2000 { animation-delay: 2s; }
-        .animation-delay-4000 { animation-delay: 4s; }
+        /* Hiệu ứng kính mờ (Glassmorphism) cho Card */
+        .glass-card {
+            background: rgba(0, 0, 0, 0.5); /* Chuyển sang đen mờ trung tính để tiệp với video */
+            backdrop-filter: blur(24px); /* Tăng độ mờ kính */
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+        }
         
-        /* Tùy chỉnh thanh cuộn cho đẹp mắt trên máy tính */
+        /* Tùy chỉnh thanh cuộn */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-track { background: #020617; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #475569; }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4 md:p-8 relative">
+<body class="antialiased selection:bg-cyan-500 selection:text-white">
 
-    <!-- Hiệu ứng Gradient Background chuyển động -->
-    <div class="fixed inset-0 w-full h-full z-0 overflow-hidden flex items-center justify-center pointer-events-none">
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob"></div>
-        <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob animation-delay-2000"></div>
-        <div class="absolute bottom-1/4 left-1/2 w-96 h-96 bg-cyan-500 rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob animation-delay-4000"></div>
+    <!-- Video Background Cố Định -->
+    <div class="fixed inset-0 w-full h-full z-0">
+        <video
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260228_065522_522e2295-ba22-457e-8fdb-fbcd68109c73.mp4"
+            class="absolute inset-0 w-full h-full object-cover"
+            autoplay 
+            muted 
+            loop 
+            playsinline
+        ></video>
+        <!-- Lớp phủ màu đen nhẹ để làm nổi bật nội dung -->
+        <div class="absolute inset-0 bg-black/50"></div>
     </div>
 
-    <!-- Nội dung chính (Thay đổi max-w rộng hơn cho Desktop và dùng Grid layout) -->
-    <main class="z-10 w-full max-w-5xl glass-card rounded-3xl p-8 md:p-10 transform transition-all duration-500 hover:shadow-cyan-500/10 hover:border-cyan-500/20">
-        
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
-            
-            <!-- CỘT TRÁI: Profile cố định (Chiếm 4/12 màn hình trên máy tính) -->
-            <div class="md:col-span-4 flex flex-col items-center md:items-start border-b md:border-b-0 md:border-r border-slate-700/50 pb-8 md:pb-0 md:pr-8 text-center md:text-left">
-                
-                <!-- Avatar -->
-                <div class="relative group mb-6">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-full blur opacity-70 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                    <img src="https://scontent.fsgn5-12.fna.fbcdn.net/v/t39.30808-6/659673772_951364870973462_3744252160377949961_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=ZZi4QC8KKFQQ7kNvwFc9zR-&_nc_oc=AdpwXOVgggDfWO56AZI7k3TZo-fyY-Tgz0sH0q3IBI9kTbnkwXrMI_6AmkTzFvgs4t0&_nc_zt=23&_nc_ht=scontent.fsgn5-12.fna&_nc_gid=sBbR_vhWRbgLzzaj1a8S0A&_nc_ss=7a3a8&oh=00_Af0KRKDbcJ5Qz-XnpVphcjKdxy7pGdut1I3TrzlzspkH_Q&oe=69E135DA&background=0D8ABC&color=fff&size=150" 
-                         alt="Avatar" 
-                         class="relative w-40 h-40 rounded-full object-cover border-4 border-slate-900 mx-auto md:mx-0">
-                </div>
+    <!-- Thanh Điều Hướng (Navbar) -->
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-6xl bg-white/95 backdrop-blur-md rounded-[16px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] z-50 flex items-center justify-between px-4 sm:px-6 py-3 transition-all">
+        <!-- Logo -->
+        <a href="#" class="font-barlow font-bold text-2xl tracking-tight text-[#222]">
+            Dương<span class="text-cyan-500">.</span>
+        </a>
 
-                <!-- Tên & Chức danh -->
-                <div class="inline-block px-3 py-1 mb-3 rounded-full bg-slate-800/80 border border-slate-700 text-cyan-400 text-xs font-semibold tracking-wide uppercase">
-                    Sinh viên năm nhất
-                </div>
-                
-                <h1 class="text-3xl font-extrabold mb-2 tracking-tight">
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
-                        Nguyễn Tùng Dương
-                    </span>
-                </h1>
-                
-                <!-- Nút liên hệ -->
-                <div class="mt-6 w-full">
-                    <a href="https://www.facebook.com/duong.nguyen.225518" target="_blank" rel="noopener noreferrer" 
-                       class="group w-full md:w-auto inline-flex justify-center items-center gap-2 px-6 py-3 bg-[#1877F2] hover:bg-[#166FE5] text-white rounded-xl font-semibold transition-all duration-300 shadow-[0_0_15px_rgba(24,119,242,0.3)] hover:-translate-y-1">
-                        <i class="fa-brands fa-facebook-f text-lg"></i>
-                        Kết nối Facebook
-                    </a>
-                </div>
-            </div>
-
-            <!-- CỘT PHẢI: Nội dung thay đổi (Chiếm 8/12 màn hình) -->
-            <div class="md:col-span-8 flex flex-col h-full">
-                
-                <!-- Thanh Menu Tab (Các mục nhấn) -->
-                <div class="flex flex-wrap gap-2 mb-8 bg-slate-800/50 p-1.5 rounded-2xl border border-slate-700/50 inline-flex">
-                    <button onclick="switchTab('about')" id="btn-about" class="tab-btn active px-6 py-2 rounded-xl text-sm font-semibold transition-all duration-300 bg-cyan-500 text-white shadow-lg shadow-cyan-500/25">
-                        <i class="fa-regular fa-user mr-2"></i>Giới thiệu
-                    </button>
-                    <button onclick="switchTab('education')" id="btn-education" class="tab-btn px-6 py-2 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-700 transition-all duration-300">
-                        <i class="fa-solid fa-graduation-cap mr-2"></i>Học vấn
-                    </button>
-                    <button onclick="switchTab('goals')" id="btn-goals" class="tab-btn px-6 py-2 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-700 transition-all duration-300">
-                        <i class="fa-solid fa-rocket mr-2"></i>Mục tiêu
-                    </button>
-                </div>
-
-                <!-- NỘI DUNG TỪNG TAB -->
-                <div class="flex-1 relative min-h-[250px]">
-                    
-                    <!-- Tab 1: Giới thiệu -->
-                    <div id="tab-about" class="tab-content animate-fade-in block">
-                        <h2 class="text-2xl font-bold text-slate-200 mb-4 border-l-4 border-cyan-500 pl-4">Về bản thân tôi</h2>
-                        <p class="text-slate-400 leading-relaxed text-lg mb-4">
-                            Xin chào! Tôi hiện đang là sinh viên năm nhất với niềm đam mê khám phá thế giới kết nối internet và hệ thống mạng. Tôi luôn tò mò về cách các máy tính giao tiếp với nhau trên toàn cầu.
-                        </p>
-                        <p class="text-slate-400 leading-relaxed text-lg">
-                            Tôi đang trong quá trình xây dựng nền tảng vững chắc để phát triển trong lĩnh vực Công nghệ thông tin. Rất vui được làm quen với mọi người!
-                        </p>
-                    </div>
-
-                    <!-- Tab 2: Học vấn (Mặc định ẩn) -->
-                    <div id="tab-education" class="tab-content animate-fade-in hidden">
-                        <h2 class="text-2xl font-bold text-slate-200 mb-4 border-l-4 border-blue-500 pl-4">Thông tin Học vấn</h2>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                            <!-- Box Trường -->
-                            <div class="bg-slate-800/40 p-5 rounded-2xl border border-slate-700/50 hover:border-blue-500/50 transition duration-300 group">
-                                <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition">
-                                    <i class="fa-solid fa-school text-blue-400 text-xl"></i>
-                                </div>
-                                <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Đại học</p>
-                                <p class="text-slate-200 font-medium text-lg">Công nghệ Thông tin (UIT)</p>
-                                <p class="text-slate-500 text-sm mt-2">Đại học Quốc gia TP.HCM</p>
-                            </div>
-
-                            <!-- Box Chuyên ngành -->
-                            <div class="bg-slate-800/40 p-5 rounded-2xl border border-slate-700/50 hover:border-purple-500/50 transition duration-300 group">
-                                <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition">
-                                    <i class="fa-solid fa-network-wired text-purple-400 text-xl"></i>
-                                </div>
-                                <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Chuyên ngành</p>
-                                <p class="text-slate-200 font-medium text-lg">Mạng máy tính & TT Dữ liệu</p>
-                                <p class="text-slate-500 text-sm mt-2">Sinh viên năm nhất</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tab 3: Mục tiêu (Mặc định ẩn) -->
-                    <div id="tab-goals" class="tab-content animate-fade-in hidden">
-                        <h2 class="text-2xl font-bold text-slate-200 mb-4 border-l-4 border-purple-500 pl-4">Định hướng tương lai</h2>
-                        
-                        <div class="mt-4 p-6 bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-2xl border border-slate-700/50 relative overflow-hidden">
-                            <!-- Icon trang trí mờ ở background -->
-                            <i class="fa-solid fa-bullseye absolute -right-4 -top-4 text-8xl text-slate-700/20"></i>
-                            
-                            <ul class="space-y-4 text-slate-400 relative z-10 text-lg">
-                                <li class="flex items-start gap-3">
-                                    <i class="fa-solid fa-check-circle text-cyan-500 mt-1"></i>
-                                    <span>Tập trung nắm vững kiến thức nền tảng tại giảng đường đại học.</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <i class="fa-solid fa-check-circle text-cyan-500 mt-1"></i>
-                                    <span>Tìm hiểu và thi lấy các chứng chỉ mạng cơ bản quốc tế (như CCNA).</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <i class="fa-solid fa-check-circle text-cyan-500 mt-1"></i>
-                                    <span>Rèn luyện thêm tư duy logic và kỹ năng lập trình bổ trợ.</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <i class="fa-solid fa-check-circle text-cyan-500 mt-1"></i>
-                                    <span>Mở rộng mối quan hệ, kết nối và học hỏi từ các anh chị đi trước.</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+        <!-- Center Menu -->
+        <div class="hidden md:flex items-center space-x-10 font-barlow font-medium text-[14px] text-gray-700">
+            <a href="#hero" class="hover:text-black transition-colors">Trang chủ</a>
+            <a href="#portfolio" class="hover:text-black transition-colors">Hồ sơ cá nhân</a>
+            <a href="#portfolio" onclick="setTimeout(() => switchTab('education'), 100)" class="hover:text-black transition-colors">Học vấn</a>
+            <a href="#portfolio" onclick="setTimeout(() => switchTab('goals'), 100)" class="hover:text-black transition-colors">Mục tiêu</a>
         </div>
-    </main>
 
-    <!-- Script xử lý việc chuyển đổi qua lại giữa các Tab -->
+        <!-- Primary CTA (Nút Facebook) -->
+        <a href="https://www.facebook.com/duong.nguyen.225518" target="_blank" class="bg-[#1877F2] hover:bg-[#166FE5] transition-colors text-white font-barlow text-[14px] font-medium rounded-full pl-6 pr-2 py-2 flex items-center gap-4 group shadow-[0_0_15px_rgba(24,119,242,0.3)]">
+            <span class="hidden sm:inline-block">Kết nối Facebook</span>
+            <span class="sm:hidden">Kết nối</span>
+            <div class="bg-white/20 p-1.5 rounded-full group-hover:bg-white group-hover:text-[#1877F2] transition-all duration-300">
+                <i class="fa-brands fa-facebook-f text-sm w-4 text-center"></i>
+            </div>
+        </a>
+    </nav>
+
+    <!-- SECTION 1: Phần Hero Ấn Tượng -->
+    <section id="hero" class="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden z-10 pt-20">
+        <div class="text-center px-4 max-w-5xl mx-auto flex flex-col items-center">
+            
+            <!-- Headline -->
+            <h1 class="flex flex-col items-center justify-center text-white text-glow w-full">
+                <span class="font-barlow font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[60px] tracking-tight leading-tight mb-2">
+                    Xin chào, tôi là
+                </span>
+                <span class="font-instrument italic text-5xl sm:text-6xl md:text-7xl lg:text-[90px] leading-tight font-light text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-300 to-purple-400 pb-4 px-2">
+                    Nguyễn Tùng Dương
+                </span>
+            </h1>
+            
+            <!-- Subtext -->
+            <p class="font-barlow font-medium text-[16px] md:text-[20px] text-gray-200 mt-4 mb-10 text-glow tracking-wide max-w-2xl">
+                Sinh viên năm nhất chuyên ngành Mạng máy tính & Truyền thông Dữ liệu tại UIT.
+            </p>
+            
+            <!-- Secondary CTA (Cuộn xuống Portfolio) -->
+            <a href="#portfolio" class="bg-white hover:bg-gray-100 text-black font-barlow font-medium text-[15px] md:text-lg px-8 py-3.5 rounded-full flex items-center gap-3 transition-transform hover:scale-105 shadow-2xl">
+                Khám phá hồ sơ
+                <div class="flex items-center justify-center w-6 h-6 bg-black text-white rounded-full">
+                    <i class="fa-solid fa-arrow-down text-[10px]"></i>
+                </div>
+            </a>
+            
+        </div>
+    </section>
+
+    <!-- SECTION 2: Nội dung Portfolio (Thiết kế Card của bạn) -->
+    <section id="portfolio" class="relative w-full min-h-screen flex items-center justify-center p-4 md:p-8 z-10 py-20">
+        
+        <main class="w-full max-w-5xl glass-card rounded-3xl p-8 md:p-10 transform transition-all duration-500 border-t border-l border-white/10 hover:shadow-cyan-500/20 hover:border-cyan-500/30">
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+                
+                <!-- CỘT TRÁI: Profile cố định -->
+                <div class="md:col-span-4 flex flex-col items-center md:items-start border-b md:border-b-0 md:border-r border-slate-700/50 pb-8 md:pb-0 md:pr-8 text-center md:text-left">
+                    
+                    <!-- Avatar -->
+                    <div class="relative group mb-6">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-full blur opacity-70 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                        <img src="https://scontent.fsgn5-12.fna.fbcdn.net/v/t39.30808-6/659673772_951364870973462_3744252160377949961_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=ZZi4QC8KKFQQ7kNvwFc9zR-&_nc_oc=AdpwXOVgggDfWO56AZI7k3TZo-fyY-Tgz0sH0q3IBI9kTbnkwXrMI_6AmkTzFvgs4t0&_nc_zt=23&_nc_ht=scontent.fsgn5-12.fna&_nc_gid=sBbR_vhWRbgLzzaj1a8S0A&_nc_ss=7a3a8&oh=00_Af0KRKDbcJ5Qz-XnpVphcjKdxy7pGdut1I3TrzlzspkH_Q&oe=69E135DA&background=0D8ABC&color=fff&size=150" 
+                             alt="Avatar" 
+                             class="relative w-40 h-40 rounded-full object-cover border-4 border-slate-900 mx-auto md:mx-0">
+                    </div>
+
+                    <!-- Tên & Chức danh -->
+                    <div class="inline-block px-3 py-1 mb-3 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold tracking-wide uppercase">
+                        Sinh viên năm nhất
+                    </div>
+                    
+                    <h2 class="text-3xl font-bold mb-2 tracking-tight font-barlow">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">
+                            Nguyễn Tùng Dương
+                        </span>
+                    </h2>
+                    <p class="text-gray-400 text-sm mb-6">Đại học Công nghệ Thông tin (UIT)</p>
+                    
+                    <!-- Nút liên hệ -->
+                    <div class="w-full">
+                        <a href="https://www.facebook.com/duong.nguyen.225518" target="_blank" rel="noopener noreferrer" 
+                           class="group w-full md:w-auto inline-flex justify-center items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-xl font-semibold transition-all duration-300 hover:-translate-y-1">
+                            <i class="fa-regular fa-envelope text-lg"></i>
+                            Liên hệ ngay
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CỘT PHẢI: Nội dung thay đổi -->
+                <div class="md:col-span-8 flex flex-col h-full">
+                    
+                    <!-- Thanh Menu Tab -->
+                    <div class="flex flex-wrap gap-2 mb-8 bg-black/40 p-1.5 rounded-2xl border border-white/10 inline-flex backdrop-blur-md">
+                        <button onclick="switchTab('about')" id="btn-about" class="tab-btn active px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-300 bg-cyan-500 text-white shadow-lg shadow-cyan-500/25">
+                            <i class="fa-regular fa-user mr-2"></i>Giới thiệu
+                        </button>
+                        <button onclick="switchTab('education')" id="btn-education" class="tab-btn px-5 py-2 rounded-xl text-sm font-semibold text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300">
+                            <i class="fa-solid fa-graduation-cap mr-2"></i>Học vấn
+                        </button>
+                        <button onclick="switchTab('goals')" id="btn-goals" class="tab-btn px-5 py-2 rounded-xl text-sm font-semibold text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300">
+                            <i class="fa-solid fa-rocket mr-2"></i>Mục tiêu
+                        </button>
+                        <button onclick="switchTab('certificates')" id="btn-certificates" class="tab-btn px-5 py-2 rounded-xl text-sm font-semibold text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300">
+                            <i class="fa-solid fa-certificate mr-2"></i>Chứng chỉ
+                        </button>
+                    </div>
+
+                    <!-- NỘI DUNG TỪNG TAB -->
+                    <div class="flex-1 relative min-h-[250px]">
+                        
+                        <!-- Tab 1: Giới thiệu -->
+                        <div id="tab-about" class="tab-content animate-fade-in block">
+                            <h3 class="text-2xl font-bold text-white mb-4 border-l-4 border-cyan-500 pl-4 font-barlow">Về bản thân tôi</h3>
+                            <p class="text-gray-300 leading-relaxed text-lg mb-4 font-light">
+                                Xin chào! Tôi hiện đang là sinh viên năm nhất với niềm đam mê khám phá thế giới kết nối internet và hệ thống mạng. Tôi luôn tò mò về cách các máy tính giao tiếp với nhau trên toàn cầu.
+                            </p>
+                            <p class="text-gray-300 leading-relaxed text-lg font-light">
+                                Tôi đang trong quá trình xây dựng nền tảng vững chắc để phát triển trong lĩnh vực Công nghệ thông tin. Rất vui được làm quen với mọi người!
+                            </p>
+                        </div>
+
+                        <!-- Tab 2: Học vấn -->
+                        <div id="tab-education" class="tab-content animate-fade-in hidden">
+                            <h3 class="text-2xl font-bold text-white mb-4 border-l-4 border-blue-500 pl-4 font-barlow">Thông tin Học vấn</h3>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                                <!-- Box Trường -->
+                                <div class="bg-black/30 p-5 rounded-2xl border border-white/5 hover:border-blue-500/50 hover:bg-black/50 transition duration-300 group">
+                                    <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                                        <i class="fa-solid fa-school text-blue-400 text-xl"></i>
+                                    </div>
+                                    <p class="text-xs text-blue-300 uppercase tracking-wider font-semibold mb-1">Đại học</p>
+                                    <p class="text-white font-medium text-lg">Công nghệ Thông tin (UIT)</p>
+                                    <p class="text-gray-400 text-sm mt-2">Đại học Quốc gia TP.HCM</p>
+                                </div>
+
+                                <!-- Box Chuyên ngành -->
+                                <div class="bg-black/30 p-5 rounded-2xl border border-white/5 hover:border-purple-500/50 hover:bg-black/50 transition duration-300 group">
+                                    <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                                        <i class="fa-solid fa-network-wired text-purple-400 text-xl"></i>
+                                    </div>
+                                    <p class="text-xs text-purple-300 uppercase tracking-wider font-semibold mb-1">Chuyên ngành</p>
+                                    <p class="text-white font-medium text-lg">Mạng máy tính & TT Dữ liệu</p>
+                                    <p class="text-gray-400 text-sm mt-2">Sinh viên năm nhất</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab 3: Mục tiêu -->
+                        <div id="tab-goals" class="tab-content animate-fade-in hidden">
+                            <h3 class="text-2xl font-bold text-white mb-4 border-l-4 border-purple-500 pl-4 font-barlow">Định hướng tương lai</h3>
+                            
+                            <div class="mt-4 p-6 bg-gradient-to-br from-black/40 to-black/60 rounded-2xl border border-white/5 relative overflow-hidden">
+                                <i class="fa-solid fa-bullseye absolute -right-4 -top-4 text-8xl text-white/5"></i>
+                                
+                                <ul class="space-y-4 text-gray-300 relative z-10 text-[16px] font-light">
+                                    <li class="flex items-start gap-3">
+                                        <div class="mt-1 bg-cyan-500/20 rounded-full p-1"><i class="fa-solid fa-check text-cyan-400 text-xs"></i></div>
+                                        <span>Tập trung nắm vững kiến thức nền tảng tại giảng đường đại học.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div class="mt-1 bg-cyan-500/20 rounded-full p-1"><i class="fa-solid fa-check text-cyan-400 text-xs"></i></div>
+                                        <span>Tìm hiểu và thi lấy các chứng chỉ mạng cơ bản quốc tế (như CCNA).</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div class="mt-1 bg-cyan-500/20 rounded-full p-1"><i class="fa-solid fa-check text-cyan-400 text-xs"></i></div>
+                                        <span>Rèn luyện thêm tư duy logic và kỹ năng lập trình bổ trợ.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div class="mt-1 bg-cyan-500/20 rounded-full p-1"><i class="fa-solid fa-check text-cyan-400 text-xs"></i></div>
+                                        <span>Mở rộng mối quan hệ, kết nối và học hỏi từ các anh chị đi trước.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Tab 4: Chứng chỉ -->
+                        <div id="tab-certificates" class="tab-content animate-fade-in hidden">
+                            <h3 class="text-2xl font-bold text-white mb-4 border-l-4 border-teal-500 pl-4 font-barlow">Chứng chỉ Coursera</h3>
+                            
+                            <div class="grid grid-cols-1 gap-4 mt-6">
+                                <!-- Box Chứng chỉ 1 -->
+                                <div class="bg-black/30 p-5 rounded-2xl border border-white/5 hover:border-white/30 hover:bg-black/50 transition duration-300 flex items-start gap-4 group">
+                                    <div class="w-12 h-12 rounded-full bg-blue-500/20 flex-shrink-0 flex items-center justify-center group-hover:scale-110 transition">
+                                        <i class="fa-solid fa-award text-blue-400 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-blue-300 uppercase tracking-wider font-semibold mb-1">Coursera</p>
+                                        <p class="text-white font-medium text-lg">Google AI Essentials</p>
+                                        <p class="text-gray-400 text-sm mt-1">Cấp bởi: Google</p>
+                                        <a href="https://coursera.org/share/531ddb3f7c5036d23cb8f62d3050e392" target="_blank" class="inline-flex items-center gap-1 mt-3 text-xs text-gray-300 hover:text-white transition-colors">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Xem chứng chỉ
+                                        </a>
+                                    </div>
+                                </div>
+
+        
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <!-- Script xử lý việc chuyển đổi Tab -->
     <script>
         function switchTab(tabId) {
-            // 1. Ẩn tất cả các nội dung tab
+            // Ẩn tất cả nội dung
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => {
                 content.classList.add('hidden');
                 content.classList.remove('block');
             });
 
-            // 2. Reset style của tất cả các nút (đổi về màu xám)
+            // Reset nút bấm
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => {
-                btn.className = 'tab-btn px-6 py-2 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-700 transition-all duration-300';
+                btn.className = 'tab-btn px-5 py-2 rounded-xl text-sm font-semibold text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300';
             });
 
-            // 3. Hiển thị nội dung tab được chọn
+            // Hiện nội dung đã chọn
             const targetContent = document.getElementById('tab-' + tabId);
             targetContent.classList.remove('hidden');
             targetContent.classList.add('block');
 
-            // 4. Highlight nút đang được chọn (đổi sang màu xanh nổi bật)
+            // Đổi màu nút đã chọn
             const targetButton = document.getElementById('btn-' + tabId);
-            targetButton.className = 'tab-btn active px-6 py-2 rounded-xl text-sm font-semibold transition-all duration-300 bg-cyan-500 text-white shadow-lg shadow-cyan-500/25';
+            targetButton.className = 'tab-btn active px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-300 bg-cyan-500 text-white shadow-lg shadow-cyan-500/25';
         }
     </script>
 </body>
